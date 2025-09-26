@@ -14,9 +14,13 @@ var app = express();
 
 // Determine the root directory (handle both local and serverless environments)
 var rootDir = __dirname;
-if (__dirname.includes('.netlify/functions-serve')) {
-  // When running in Netlify functions, adjust the path
-  rootDir = path.resolve(__dirname, '../../../..');
+if (__dirname.includes('.netlify/functions-serve') || __dirname.includes('.netlify\\functions-serve')) {
+  // When running in Netlify functions, go up to the project root
+  // From .netlify/functions-serve/api/netlify/functions to project root
+  rootDir = path.resolve(__dirname, '../../../../../..');
+} else if (process.env.NETLIFY) {
+  // In production Netlify environment
+  rootDir = '/var/task';
 }
 
 // view engine setup

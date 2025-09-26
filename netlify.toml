@@ -3,7 +3,7 @@
   publish = "public"
 
 [functions]
-  external_node_modules = ["express"]
+  external_node_modules = ["express", "ejs", "cookie-parser", "morgan", "http-errors", "debug"]
   node_bundler = "esbuild"
 
 [[redirects]]
