@@ -21,10 +21,7 @@ router.get('/', function (req, res, next) {
       "SQL",
       "Express.js",
       "Github"
-    ],
-    image: ["images/pexels-joshsorenson-1714208.jpg",
-      "images/pexels-luis-gomes-166706-546819.jpg",
-      "images/pexels-pixabay-301792.jpg"]
+    ]
 
   });
 });

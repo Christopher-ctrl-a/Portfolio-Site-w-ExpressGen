@@ -16,12 +16,8 @@ router.get('/', function (req, res, next) {
     projectTitles: ["Responsive Website", 
       "Pixel Art Gallery", 
       "UML Diagram"],
-    projectLinks: ["https://chris-esguerra.github.io/Responsive-Website/", 
-      "https://chris-esguerra.github.io/Pixel-Art-Gallery/", 
-      "https://drive.google.com/file/d/1pX4mJ3jv0b2y3Y9F7Zk8KXG5Z5Z5Z5Z5/view?usp=sharing"],
-    projectImages: ["./images/image1.jpg", 
-      "www.example.com/image2.jpg", 
-      "www.example.com/image3.jpg"],
+    projectLinks: ["https://christopher-ctrl-a.github.io/Introduction/", 
+      "https://chris-esguerra.github.io/Pixel-Art-Gallery/"],
   });
 });
 
