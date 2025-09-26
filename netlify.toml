@@ -1,0 +1,19 @@
+[build]
+  command = "echo 'Building Functions'"
+  publish = "public"
+
+[functions]
+  external_node_modules = ["express"]
+  node_bundler = "esbuild"
+
+[[redirects]]
+  force = true
+  from = "/api/*"
+  status = 200
+  to = "/.netlify/functions/api/:splat"
+
+# Redirect all other routes to the Express app for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
