@@ -1,12 +1,18 @@
 // app.js Christopher Esguerra 301483615 September 24, 2025
+<<<<<<< HEAD
 var serverless = require('serverless-http');
+=======
+>>>>>>> 3f92b8d0bdb464736bd234c921e5bd5dd85632e0
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3f92b8d0bdb464736bd234c921e5bd5dd85632e0
 var indexRouter = require('./routes/index');
 var aboutRouter = require('./routes/about');
 var contactRouter = require('./routes/contact');

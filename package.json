@@ -3,9 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+<<<<<<< HEAD
     "start": "node ./bin/www",
     "build": "echo 'Building for Netlify deployment'",
     "dev": "node ./bin/www"
+=======
+    "start": "node ./bin/www"
+>>>>>>> 3f92b8d0bdb464736bd234c921e5bd5dd85632e0
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -13,7 +17,11 @@
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
+<<<<<<< HEAD
     "morgan": "~1.9.1",
     "serverless-http": "^4.0.0"
+=======
+    "morgan": "~1.9.1"
+>>>>>>> 3f92b8d0bdb464736bd234c921e5bd5dd85632e0
   }
 }
