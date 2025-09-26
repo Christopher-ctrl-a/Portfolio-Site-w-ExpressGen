@@ -16,7 +16,7 @@
 }
 
 .form-input, .form-btn {
-    width: 50rem;
+    width: 50%;
     justify-content: center;
     padding: 1rem;
     border-radius: 1rem;
