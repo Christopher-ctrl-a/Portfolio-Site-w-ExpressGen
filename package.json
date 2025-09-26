@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "build": "node -e \"const fs = require('fs'); const path = require('path'); if (!fs.existsSync('./netlify/functions/views')) fs.mkdirSync('./netlify/functions/views', {recursive: true}); fs.readdirSync('./views').forEach(file => fs.copyFileSync(path.join('./views', file), path.join('./netlify/functions/views', file))); console.log('Views copied to function directory');\"",
+    "build": "node -e \"const fs = require('fs'); const path = require('path'); ['./netlify/functions/views', './public/views'].forEach(dir => { if (!fs.existsSync(dir)) fs.mkdirSync(dir, {recursive: true}); fs.readdirSync('./views').forEach(file => fs.copyFileSync(path.join('./views', file), path.join(dir, file))); }); console.log('Views copied to both function and public directories');\"",
     "dev": "node ./bin/www"
   },
   "dependencies": {

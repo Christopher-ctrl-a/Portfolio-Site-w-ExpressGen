@@ -12,9 +12,35 @@ const serviceRouter = require('../../routes/service');
 
 const app = express();
 
-// Set up view engine - views are now in the function directory
+// Set up view engine with multiple path attempts
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+
+// Try multiple possible view paths for different environments
+const possibleViewsPaths = [
+  path.join(__dirname, 'views'),                    // Function bundled views
+  path.join(__dirname, '../../views'),              // Relative to function
+  path.join(__dirname, '../../public/views'),       // Views in public directory
+  '/var/task/views',                                // Direct Netlify path
+  '/var/task/public/views'                          // Public views in Netlify
+];
+
+let viewsPath = possibleViewsPaths[0]; // Default
+
+// Find the first path that exists
+const fs = require('fs');
+for (const testPath of possibleViewsPaths) {
+  try {
+    if (fs.existsSync(testPath) && fs.readdirSync(testPath).length > 0) {
+      viewsPath = testPath;
+      break;
+    }
+  } catch (e) {
+    // Continue to next path
+  }
+}
+
+console.log('Using views path:', viewsPath);
+app.set('views', viewsPath);
 
 // Middleware
 const cookieParser = require('cookie-parser');
