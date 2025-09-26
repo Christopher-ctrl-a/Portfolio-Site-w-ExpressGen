@@ -5,6 +5,7 @@
 [functions]
   external_node_modules = ["express", "ejs", "cookie-parser", "morgan", "http-errors", "debug"]
   node_bundler = "esbuild"
+  included_files = ["views/**/*.ejs", "routes/**/*.js"]
 
 [[redirects]]
   force = true

@@ -3,7 +3,7 @@ const serverless = require('serverless-http');
 const express = require('express');
 const path = require('path');
 
-// Import route handlers directly instead of the full app
+// Import route handlers
 const indexRouter = require('../../routes/index');
 const aboutRouter = require('../../routes/about'); 
 const contactRouter = require('../../routes/contact');
@@ -12,26 +12,11 @@ const serviceRouter = require('../../routes/service');
 
 const app = express();
 
-// Set up view engine for serverless environment
+// Set up view engine - views are now in the function directory
 app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// Fix views path for different environments
-let viewsPath;
-if (process.env.NETLIFY) {
-  // Production Netlify environment
-  viewsPath = path.join('/var/task', 'views');
-} else if (__dirname.includes('.netlify')) {
-  // Local netlify dev environment - go up from .netlify/functions-serve/api/netlify/functions
-  viewsPath = path.resolve(__dirname, '../../../../../views');
-} else {
-  // Standard local development
-  viewsPath = path.join(__dirname, '../../views');
-}
-
-console.log('Views path:', viewsPath);
-app.set('views', viewsPath);
-
-// Middleware (include all the middleware from the original app)
+// Middleware
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
@@ -40,15 +25,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Static files - in serverless, these should be handled by Netlify directly
-// app.use(express.static(...)) is not needed as Netlify serves static files
-
-// Routes with debug logging
-app.use((req, res, next) => {
-  console.log(`Request: ${req.method} ${req.path}`);
-  next();
-});
-
+// Routes
 app.use('/', indexRouter);
 app.use('/about', aboutRouter);
 app.use('/contact', contactRouter);

@@ -15,12 +15,12 @@ var app = express();
 // Determine the root directory (handle both local and serverless environments)
 var rootDir = __dirname;
 if (__dirname.includes('.netlify/functions-serve') || __dirname.includes('.netlify\\functions-serve')) {
-  // When running in Netlify functions, go up to the project root
-  // From .netlify/functions-serve/api/netlify/functions to project root
-  rootDir = path.resolve(__dirname, '../../../../../..');
-} else if (process.env.NETLIFY) {
-  // In production Netlify environment
-  rootDir = '/var/task';
+  // When running in Netlify functions locally, go up to the project root
+  // From .netlify/functions-serve/api to project root (going up 3 levels)
+  rootDir = path.resolve(__dirname, '../../..');
+} else if (process.env.NETLIFY || process.env.AWS_LAMBDA_FUNCTION_NAME) {
+  // In production Netlify environment, files should be bundled alongside
+  rootDir = __dirname;  // views should be bundled with the function due to included_files
 }
 
 // view engine setup
